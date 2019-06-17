@@ -5,6 +5,7 @@ import { fetchPosts } from '../../actions/postActions';
 
 class Home extends Component {
   componentDidMount() {
+    console.log('componentdidmount');
     this.props.fetchPosts();
   }
   _renderPostItemList = ({ data = [] }) => {

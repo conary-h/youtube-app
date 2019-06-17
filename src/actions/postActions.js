@@ -1,18 +1,25 @@
 import { FETCH_POSTS, NEW_POST } from './types';
-import { databaseRef } from '../config/firebase';
 import axios from 'axios';
-
-export const fetchPosts = () => (dispatch, {getFirebase}) => {
+/* export const fetchPosts = () => dispatch => {
 	axios('https://jsonplaceholder.typicode.com/posts')
  .then(posts => dispatch({
    type: FETCH_POSTS,
    payload: posts
  }));
-}
-export const addToDo = newPost => async dispatch => {
-  databaseRef.push().set(newPost);
-};
+} */
 
-export const completeToDo = completePostId => async dispatch => {
-  databaseRef.child(completePostId).remove();
-};
+export const fetchPosts = () => (dispatch, getState, {getFirebase, getFirestore}) => {
+  const firebase = getFirebase();
+  const postsRef = firebase.database().ref().child('posts');
+
+  console.log(postsRef);
+  
+  postsRef.on('value', (snapshot) => {
+    dispatch({
+      type: FETCH_POSTS,
+      payload: snapshot.val()
+    });
+  });
+  
+}
+

@@ -17,5 +17,4 @@ firebase.initializeApp(firebaseConfig);
 
 export default firebase;
 
-export const databaseRef = firebase.database().ref();
 // export const todosRef = databaseRef.child('posts');
