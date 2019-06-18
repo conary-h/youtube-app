@@ -11,7 +11,7 @@ function Header(props) {
         <span className="logo-text">Video Fetcher</span>
       </div>
       {
-        props.isAuthenticated &&
+        !props.isAuthenticated &&
         <div className="search-wrapper ib">
           <SearchBar />
         </div>

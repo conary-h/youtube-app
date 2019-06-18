@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import LogIn from '../../components/LogIn'; 
+import LogIn from '../../components/LogIn';
+import { connect } from 'react-redux';
 
 class Home extends Component {
   render() {
     return (
       <div className="container">
-        <LogIn />
+        {
+          this.props.isAuthenticated &&
+          <LogIn />
+        }
       </div>
     )
   }
@@ -15,8 +19,8 @@ class Home extends Component {
   authUser: PropTypes.func.isRequired,
 }; */
 
-/* const mapStateToProps = state => ({
-  posts: state.posts.items
-}); */
+const mapStateToProps = state => ({
+  isAuthenticated: state.session.isAuthenticated
+});
 
-export default Home;
+export default connect(mapStateToProps)(Home);

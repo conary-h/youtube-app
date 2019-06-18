@@ -1,10 +1,15 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 
- let SearchBar = () => {
+ let SearchBar = (props) => {
+  const _onChangeSearchInput = () => {
+    console.log('onchange');
+    console.log(props.searchTerm);
+  };
   return (
     <form>
-        <Field name="searchKeyWord" component="input" placeholder="Search"/>
+        <Field name="searchKeyWord" component="input" placeholder="Search" onChange={_onChangeSearchInput}/>
         <button className="search-btn">
           <i>S</i>
         </button>
@@ -16,4 +21,8 @@ SearchBar = reduxForm({
   form: 'searchForm'
 })(SearchBar)
 
-export default SearchBar;
+const mapStateToProps = state => ({
+  searchTerm: state.form.searchForm
+});
+
+export default connect(mapStateToProps)(SearchBar);
