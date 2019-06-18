@@ -1,5 +1,4 @@
-import { FETCH_POSTS, NEW_POST } from './types';
-import axios from 'axios';
+import { FETCH_POSTS } from './types';
 /* export const fetchPosts = () => dispatch => {
 	axios('https://jsonplaceholder.typicode.com/posts')
  .then(posts => dispatch({

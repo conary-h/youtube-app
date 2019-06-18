@@ -9,7 +9,11 @@
   export const authenticate = () => {
     return gapi.auth2.getAuthInstance()
         .signIn({scope: "https://www.googleapis.com/auth/youtube.force-ssl"})
-        .then(() => console.log("Sign-in successful"))
+        .then((res) => {
+          console.log(res)
+          console.log(res.Zi)
+          console.log(res.Zi.access_token)
+        })
         .then(loadClient)
         .catch((err) => console.error("Error signing in", err));
   }
