@@ -56,6 +56,9 @@ html {
   width: 100%;
   height: auto;
 }
+.txt-center {
+  text-align: center;
+}
 
 /* Utilities */
 
@@ -88,4 +91,20 @@ html {
   box-shadow: 0 1px 1px rgba(0,0,0,.15),
     inset 0 0 2px rgba(0,0,0,.05);
   transition: all .07s ease-in-out
+}
+
+.login-option {
+  width: 25rem;
+  padding: 1rem 2rem;
+  color: #fff;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 auto;
+}
+.login-option.google {
+  background: #db4437;
+}
+.login-option:hover {
+  opacity: .9;
 }

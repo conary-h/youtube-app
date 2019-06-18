@@ -1,4 +1,4 @@
-import { AUTH_USER } from '../actions/types';
+import { AUTH_USER, LOGOUT_USER } from '../actions/types';
 
 const initialState = {
 	isAuthenticated: false,
@@ -8,12 +8,17 @@ const initialState = {
 export default function(state = initialState, action) {
 	switch(action.type) {
     case AUTH_USER:
-        const isAuthenticated = action.payload.Zi.access_token ? true : false;
-    return {
-      ...state,
-      isAuthenticated,
-      userInfo: action.payload.w3
-    }
+      const isAuthenticated = action.payload.Zi.access_token ? true : false;
+      return {
+        ...state,
+        isAuthenticated,
+        userInfo: action.payload.w3
+      }
+    case LOGOUT_USER:
+      return {
+        isAuthenticated: false,
+      }
+
 		default:
 			return state;
 	}

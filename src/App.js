@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Provider } from 'react-redux';
-import store from './store';
 import Home from './containers/Home';
 import Header from './components/layout/Header';
+import { initClientForSession } from './actions/authActions';
+import { connect } from 'react-redux';
 
 
 class App extends Component {
+  componentDidMount() {
+    this.props.initClientForSession();
+  }
   render() {
     return (
-      <Provider store={store}>
-        <div className="App">
-          <Header />
-          <Home />
-        </div>
-      </Provider>
+      <div className="App">
+        <Header />
+        <Home />
+      </div>
     );
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    initClientForSession: () => dispatch(initClientForSession()),
+  }
+};
+
+export default connect(null, mapDispatchToProps)(App);

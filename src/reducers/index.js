@@ -6,7 +6,7 @@ import { reducer as formReducer } from 'redux-form';
 
 export default combineReducers({
 	posts: postReducer,
-	sesion: authReducer,
+	session: authReducer,
 	form: formReducer,
 	// firebase: firebaseReducer
 });
