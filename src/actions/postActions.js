@@ -11,8 +11,6 @@ import axios from 'axios';
 export const fetchPosts = () => (dispatch, getState, {getFirebase, getFirestore}) => {
   const firebase = getFirebase();
   const postsRef = firebase.database().ref().child('posts');
-
-  console.log(postsRef);
   
   postsRef.on('value', (snapshot) => {
     dispatch({

@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className="header">
       <div className="logo-wrapper ib">
-        <img src={logo} className="img-responsive"/>
+        <img src={logo} className="img-responsive" alt="logo"/>
         <span className="logo-text">Video Fetcher</span>
       </div>
       <div className="search-wrapper ib">

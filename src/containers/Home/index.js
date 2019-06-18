@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import PropTypes  from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/postActions';
+import execute, { authenticate, loadClient } from '../../config/ytconfig';
+
 
 class Home extends Component {
   componentDidMount() {
-    console.log('componentdidmount');
     this.props.fetchPosts();
   }
   _renderPostItemList = ({ data = [] }) => {
@@ -23,6 +24,8 @@ class Home extends Component {
       <div className="container">
         {posts}
         <p>ijgijifjiosahfhnafusnifnduhfi</p>
+        <button onClick={authenticate}>Sign In</button>
+        <button onClick={execute}>Execute</button>
       </div>
     )
   }
