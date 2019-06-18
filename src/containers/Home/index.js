@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes  from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/postActions';
@@ -20,9 +20,10 @@ class Home extends Component {
   render() {
     const posts = this._renderPostItemList(this.props.posts);
     return (
-      <Fragment>
+      <div className="container">
         {posts}
-      </Fragment>
+        <p>ijgijifjiosahfhnafusnifnduhfi</p>
+      </div>
     )
   }
 }

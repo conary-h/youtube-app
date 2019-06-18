@@ -3,6 +3,7 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
 import Home from './containers/Home';
+import Header from './components/layout/Header';
 
 
 class App extends Component {
@@ -10,6 +11,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
+          <Header />
           <Home />
         </div>
       </Provider>
