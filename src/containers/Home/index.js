@@ -7,6 +7,9 @@ import { connect } from 'react-redux';
 class Home extends Component {
   render() {
     const { isAuthenticated, searchedVideos } = this.props;
+    const searchWrapper = document.querySelector('.search-wrapper');
+
+    searchWrapper ? searchWrapper.classList.remove('hide') : '';
     return (
       <div className="container">
         {!isAuthenticated && <LogIn />}

@@ -5,9 +5,14 @@ html {
   width: 96rem;
   margin: 0 auto;
 }
+@media (min-width: 1200px) {
+  .container {
+    width: 120rem;
+  }
+}
 
 .header {
-  width: 100%;
+  width: 98%;
   height: 7.5rem;
   padding-left: 3rem;
   padding-top: 1rem;
@@ -19,6 +24,7 @@ html {
 .logo-wrapper {
   width: 20%;
   display: inline-block;
+  cursor: pointer;
 }
 .search-wrapper {
   width: 70%;
@@ -29,6 +35,7 @@ html {
   height: 2.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  font-size: 1.5rem;
 }
 
 .logo-wrapper img {
@@ -48,6 +55,9 @@ html {
 .ib {
   display: inline-block;
   vertical-align: middle;
+}
+.hide {
+  display: none;
 }
 
 .img-responsive {
@@ -107,4 +117,30 @@ html {
 }
 .login-option:hover {
   opacity: .9;
+}
+
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 2rem;
+}
+.video-item {
+  width: 23rem;
+  cursor: pointer;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+}
+.video-item .video-title {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 1.6rem;
+  color: #282828;
+}
+.video-item .video-channel {
+  color: #606060;
+  font-size: 1.3rem;
+}
+.video-item:not(:last-child) {
+  margin-right: 1rem;
 }
