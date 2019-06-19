@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import LogIn from '../../components/LogIn';
-import VideoList from '../../components/VideoList'
+import VideoList from '../../components/VideoList';
+import TimeWidget from '../../components/TimeWidget';
 import { connect } from 'react-redux';
 
 class Home extends Component {
@@ -12,15 +12,13 @@ class Home extends Component {
     searchWrapper ? searchWrapper.classList.remove('hide') : '';
     return (
       <div className="container">
+        <TimeWidget />
         {!isAuthenticated && <LogIn />}
         {searchedVideos.length && <VideoList />}
       </div>
     )
   }
 }
-/* Home.propTypes = {
-  authUser: PropTypes.func.isRequired,
-}; */
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.isAuthenticated,

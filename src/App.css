@@ -144,3 +144,31 @@ html {
 .video-item:not(:last-child) {
   margin-right: 1rem;
 }
+
+.time-widget {
+  width: 28rem;
+  height: 20rem;
+  margin: 0 auto;
+  background: #282828;
+  color: #fff;
+  box-shadow: 0 2px 10px 0 rgba(0,0,0,.1);
+  border-radius: 8px;
+  text-align: center;
+}
+.time-widget .hour {
+  font-size: 5rem;
+}
+
+.time-widget .date {
+  display: block;
+  font-size: 3rem;
+}
+.time-widget .info {
+  padding-top: 3rem;
+}
+.time-widget .red-bar {
+  background: #db4437;
+  height: 3rem;
+  top: 2rem;
+  position: relative;
+}

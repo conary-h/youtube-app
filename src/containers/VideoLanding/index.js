@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 function VideoLanding(props) {
@@ -28,6 +27,3 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(VideoLanding);
 
-/*VideoLanding.propTypes = {
-  itemData: PropTypes.object
-}*/
