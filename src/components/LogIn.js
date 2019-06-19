@@ -1,15 +1,15 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { authUser } from '../actions/authActions';
 
 function LogIn(props) {
   return (
-    <Fragment>
+    <div className="login-wrapper ib">
         <h1 className="txt-center">Please log in</h1>
         <div className="login-option google txt-center" onClick={props.authUser}>
           Google Account
         </div>
-    </Fragment>
+    </div>
   )
 }
 const mapDispatchToProps = dispatch => {

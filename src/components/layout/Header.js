@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { Link } from 'react-router-dom';
 import SearchBar from '../../components/SearchBar';
 import logo from '../../youtube-icon.png';
 import { connect } from 'react-redux';
+import { logOutUser } from '../../actions/authActions';
 
 function Header(props) {
   return (
@@ -14,10 +15,19 @@ function Header(props) {
         </div>
       </Link>
       {
-        props.isAuthenticated &&
-        <div className="search-wrapper ib">
-          <SearchBar />
-        </div>
+        props.isAuthenticated
+        ? (
+          <Fragment>
+            <div className="search-wrapper ib">
+              <SearchBar />
+            </div>
+
+            <div className="logout-wrapper ib">
+              <a className="logout-button" onClick={props.logOutUser}>LOG OUT</a>
+            </div>
+            </Fragment>
+        )
+        : null
       }
     </div>
   )
@@ -25,5 +35,10 @@ function Header(props) {
 const mapStateToProps = state => ({
   isAuthenticated: state.session.isAuthenticated
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    logOutUser: () => dispatch(logOutUser()),
+  }
+};
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

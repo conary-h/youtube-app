@@ -14,9 +14,19 @@ const updateSigninStatus = (isSignedIn) => {
   } else {
     console.log('is not signed in');
   }
-} 
+}
 
-export const initClientForSession = () => (dispatch) => {
+const writeUserData = (firebase, currentUser) => {
+  firebase.database().ref(`users/'${currentUser.Eea}`).set({
+    userId: currentUser.Eea,
+    username: currentUser.ig,
+    email: currentUser.U3,
+    profile_picture : currentUser.Paa
+  });
+}
+
+export const initClientForSession = () => (dispatch, getState, {getFirebase}) => {
+  const firebase = getFirebase();
   // Load auth2 library
   gapi.load('client:auth2', () => {
     gapi.client
@@ -26,12 +36,14 @@ export const initClientForSession = () => (dispatch) => {
       scope: SCOPES
     })
     .then(() => {
+      const currentUser = gapi.auth2.getAuthInstance().currentUser.get();
       // Listen for sign in state changes
       gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-  
+
       // Handle initial sign in state
       if(gapi.auth2.getAuthInstance().isSignedIn.get()) {
-        dispatch({type: SET_AUTH});
+        writeUserData(firebase, currentUser.w3)
+        dispatch({type: SET_AUTH, payload: currentUser});
       }
     })
     .catch(error => console.error(error))
@@ -46,7 +58,8 @@ export const authUser = () => (dispatch) => {
 
 export const logOutUser = () => (dispatch) => {
   gapi.auth2.getAuthInstance().signOut().then(() =>{
-    dispatch({type: LOGOUT_USER}) 
+    dispatch({type: LOGOUT_USER})
+    document.location = '/';
   });
 }
 

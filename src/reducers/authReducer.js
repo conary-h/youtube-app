@@ -17,10 +17,13 @@ export default function(state = initialState, action) {
     case LOGOUT_USER:
       return {
         isAuthenticated: false,
+        userInfo: {}
       }
     case SET_AUTH:
         return {
+          ...state,
           isAuthenticated: true,
+          userInfo: action.payload.w3
         }
 
 		default:
