@@ -13,7 +13,6 @@ const updateSigninStatus = (isSignedIn) => {
     console.log('is signed in');
   } else {
     console.log('is not signed in');
-    setAuthentication();
   }
 } 
 

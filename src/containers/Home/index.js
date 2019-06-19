@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import LogIn from '../../components/LogIn';
+import VideoList from '../../components/VideoList'
 import { connect } from 'react-redux';
 
 class Home extends Component {
   render() {
+    const { isAuthenticated, searchedVideos } = this.props;
     return (
       <div className="container">
-        {
-          !this.props.isAuthenticated &&
-          <LogIn />
-        }
+        {!isAuthenticated && <LogIn />}
+        {searchedVideos.length && <VideoList />}
       </div>
     )
   }
@@ -20,7 +20,8 @@ class Home extends Component {
 }; */
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.session.isAuthenticated
+  isAuthenticated: state.session.isAuthenticated,
+  searchedVideos: state.videos.searchedVideos
 });
 
 export default connect(mapStateToProps)(Home);

@@ -1,7 +1,7 @@
 import { FETCH_VIDEOS } from '../actions/types';
 
 const initialState = {
-	items:[],
+	searchedVideos:[],
 	item: {}
 }
 
@@ -10,7 +10,7 @@ export default function(state = initialState, action) {
     case FETCH_VIDEOS:
     return {
       ...state,
-      items: action.payload.items
+      searchedVideos: action.payload.items
     }
 		default:
 			return state;

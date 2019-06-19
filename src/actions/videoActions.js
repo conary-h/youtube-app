@@ -3,7 +3,6 @@ import { FETCH_VIDEOS } from './types';
 const gapi = window.gapi = window.gapi || {};
 
 export const fetchVideos = (searchTerm) => (dispatch, getState) => {
-  console.log(searchTerm);
   gapi.client.youtube.search.list({
     "part": "snippet",
     "maxResults": 25,
