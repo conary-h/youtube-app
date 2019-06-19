@@ -1,28 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { fetchVideos } from '../actions/videoActions';
 
- let SearchBar = (props) => {
-  const _onChangeSearchInput = () => {
-    console.log('onchange');
-    console.log(props.searchTerm);
+
+class SearchBar extends Component {
+
+  _required = (value) => {
+    if(!value || value === '') {
+      return 'Required Field.'
+    }
   };
-  return (
-    <form>
-        <Field name="searchKeyWord" component="input" placeholder="Search" onChange={_onChangeSearchInput}/>
-        <button className="search-btn">
-          <i>S</i>
+  onSubmit = (values) => {
+    console.log(JSON.stringify(values));
+    this.props.fetchVideos(values.searchKeyWord);
+  };
+  render() {
+    const { handleSubmit, valid } = this.props;
+    return (
+      <form onSubmit={handleSubmit(this.onSubmit)}>
+        <Field name="searchKeyWord" component="input" placeholder="Search" validate={this._required} />
+        <button type="submit" disabled={!valid} className="search-btn">
+          <i>Search</i>
         </button>
-    </form>
-  )
+      </form>
+    )
+  }
 }
-
 SearchBar = reduxForm({
-  form: 'searchForm'
+  form: 'searchForm',
 })(SearchBar)
 
 const mapStateToProps = state => ({
   searchTerm: state.form.searchForm
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchVideos: (searchTerm) => dispatch(fetchVideos(searchTerm)),
+  }
+};
 
-export default connect(mapStateToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);

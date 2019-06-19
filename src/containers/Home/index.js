@@ -8,7 +8,7 @@ class Home extends Component {
     return (
       <div className="container">
         {
-          this.props.isAuthenticated &&
+          !this.props.isAuthenticated &&
           <LogIn />
         }
       </div>
