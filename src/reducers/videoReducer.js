@@ -1,4 +1,4 @@
-import { FETCH_VIDEOS, SAVE_FOR_LATER } from '../actions/types';
+import { FETCH_VIDEOS, SAVE_FOR_LATER, FETCH_SAVED_VIDEOS } from '../actions/types';
 
 const initialState = {
 	searchedVideos:[],
@@ -13,6 +13,10 @@ export default function(state = initialState, action) {
       searchedVideos: action.payload.items
     }
     case SAVE_FOR_LATER:
+    return {
+      ...state,
+    }
+    case FETCH_SAVED_VIDEOS:
     return {
       ...state,
       savedVideos: action.payload

@@ -1,4 +1,4 @@
-import { FETCH_VIDEOS, SAVE_FOR_LATER } from './types';
+import { FETCH_VIDEOS, SAVE_FOR_LATER, FETCH_SAVED_VIDEOS } from './types';
 
 const gapi = window.gapi = window.gapi || {};
 
@@ -10,7 +10,6 @@ export const fetchVideos = (searchTerm) => (dispatch, getState) => {
     "q": searchTerm,
   })
   .then((response) => {
-    // Handle the results here (response.result has the parsed body).
     dispatch({type: FETCH_VIDEOS, payload: response.result});
   })
   .catch(err => console.error("Execute error", err));
@@ -18,12 +17,17 @@ export const fetchVideos = (searchTerm) => (dispatch, getState) => {
 
 export const saveForLater = (videoId, userId) => (dispatch, getState, {getFirebase}) => {
   const firebase = getFirebase();
+
+  return firebase.database().ref(`savedVideos/${userId}`).push(videoId);
+
+};
+
+export const fetchSaveVideos = (userId) => (dispatch, getState, {getFirebase}) => {
+  const firebase = getFirebase();
   const savedVideosRef = firebase.database().ref(`savedVideos/${userId}`);
 
-  firebase.database().ref(`savedVideos/'${userId}`).push({id:videoId});
-
   savedVideosRef.on('value', (snapshot) => {
-    dispatch({type: SAVE_FOR_LATER, payload: snapshot.val()});
+    dispatch({type: FETCH_SAVED_VIDEOS, payload: snapshot.val()});
   });
-}
+};
 

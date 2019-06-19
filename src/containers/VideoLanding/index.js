@@ -19,7 +19,7 @@ function VideoLanding(props) {
           <div className="video-landing-info">
             <h1 className="title">{videoDetail[0].snippet.title}</h1>
             <p className="description">{videoDetail[0].snippet.description}</p>
-            <a className="save-later-action" onClick={() => props.saveForLater(videoId, userId)}>Save For Later</a>
+            <a className="save-later-action" onClick={() => props.saveForLater(videoId, userId).then(alert('Saved'))}>Save For Later</a>
           </div>
         </Fragment>
       }

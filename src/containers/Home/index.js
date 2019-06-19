@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import LogIn from '../../components/LogIn';
 import VideoList from '../../components/VideoList';
 import TimeWidget from '../../components/TimeWidget';
+import { fetchSaveVideos } from '../../actions/videoActions';
 import { connect } from 'react-redux';
 
 class Home extends Component {
+  componentDidMount() {
+    this.props.fetchSaveVideos(this.props.userInfo.Eea);
+  }
+
   render() {
-    const { isAuthenticated, searchedVideos } = this.props;
+    const { isAuthenticated, searchedVideos, savedVideos } = this.props;
     const searchWrapper = document.querySelector('.search-wrapper');
 
     searchWrapper ? searchWrapper.classList.remove('hide') : '';
@@ -15,6 +20,8 @@ class Home extends Component {
         <TimeWidget />
         {!isAuthenticated && <LogIn />}
         {searchedVideos.length && <VideoList />}
+        {/*Saved Videos
+        {savedVideos.length && <VideoList isSavedPlaylist/>}*/}
       </div>
     )
   }
@@ -22,7 +29,14 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
   isAuthenticated: state.session.isAuthenticated,
-  searchedVideos: state.videos.searchedVideos
+  userInfo: state.session.userInfo,
+  searchedVideos: state.videos.searchedVideos,
+  savedVideos: state.videos.savedVideos
 });
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchSaveVideos: (userId) => dispatch(fetchSaveVideos(userId)),
+  }
+};
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
